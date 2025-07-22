@@ -1,0 +1,27 @@
+{
+  "name": "zapier-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src --out-dir build --format esm --splitting false",
+    "start": "node build/server.js",
+    "start:dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.12.0",
+    "fastify": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "prisma": "^6.12.0",
+    "typescript": "^5.8.3"
+  }
+}
