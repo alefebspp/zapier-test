@@ -1,4 +1,5 @@
 import Fastify, { FastifyRequest, FastifyReply } from "fastify";
+import fetch from "node-fetch";
 import { PrismaClient, Product } from "@prisma/client";
 
 const fastify = Fastify({ logger: true });
@@ -36,6 +37,12 @@ fastify.post(
 
       const product: Product = await prisma.product.create({
         data: { nome, descricao, valor, quantidade, unidade },
+      });
+
+      await fetch("https://hooks.zapier.com/hooks/catch/23887811/uu4607l/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
       });
 
       return reply.status(201).send(product);
