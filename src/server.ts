@@ -39,11 +39,14 @@ fastify.post(
         data: { nome, descricao, valor, quantidade, unidade },
       });
 
-      await fetch("https://hooks.zapier.com/hooks/catch/23887811/uu4607l/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      });
+      await fetch(
+        "https://alefebsp.app.n8n.cloud/webhook/6b05c577-efb6-48fa-8b89-623b5ce40b0a",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(product),
+        }
+      );
 
       return reply.status(201).send(product);
     } catch (error) {
