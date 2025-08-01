@@ -22,3 +22,30 @@ model Product {
   unidade    String
   createdAt  DateTime @default(now())
 }
+
+model Contato {
+  id                  Int      @id @default(autoincrement())
+  nome                String
+  enderecoResidencial String
+  cidadeResidencial   String?
+  estadoResidencial   String?
+  cepResidencial      String
+  paisResidencial     String?
+  telefoneResidencial String?
+  celular             String?
+  observacoes         String?
+  sexo                Sexo
+  bairroResidencial   String?
+  email               String   @unique
+  nascimento          DateTime
+  cpfCgc              String   @unique
+  rg                  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Sexo {
+  M
+  F
+}
