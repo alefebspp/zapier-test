@@ -156,7 +156,7 @@ fastify.get("/contatos", async (request, reply) => {
   try {
     const contatos = await prisma.contato.findMany();
 
-    return reply.send(contatos);
+    return reply.send({ data: contatos });
   } catch (error) {
     request.log.error(error);
     return reply.status(500).send({ error: "Erro ao buscar contatos" });
