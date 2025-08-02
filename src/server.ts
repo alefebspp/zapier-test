@@ -11,6 +11,16 @@ fastify.register(jwt, {
 });
 
 fastify.post("/login", async (request, reply) => {
+  const body = request.body as { username: string; password: string };
+
+  if (body.username !== "admin") {
+    return reply.status(401).send({ error: "Usuário ou senha inválidos" });
+  }
+
+  if (body.password !== "admin") {
+    return reply.status(401).send({ error: "Usuário ou senha inválidos" });
+  }
+
   const user = { id: 1, username: "admin" };
   const token = fastify.jwt.sign(user);
   return reply.send({ token });
