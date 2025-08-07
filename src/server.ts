@@ -156,7 +156,25 @@ fastify.get("/contatos", async (request, reply) => {
   try {
     const contatos = await prisma.contato.findMany();
 
-    return reply.send({ data: contatos });
+    const contatosFormatados = contatos.map((c) => ({
+      Nome: c.nome,
+      Endereco_Residencial: c.enderecoResidencial,
+      Cidade_Residencial: c.cidadeResidencial,
+      Estado_Residencial: c.estadoResidencial,
+      Cep_Residencial: c.cepResidencial,
+      Pais_Residencial: c.paisResidencial,
+      Telefone_Residencial: c.telefoneResidencial,
+      Celular: c.celular,
+      Observacoes: c.observacoes,
+      Sexo: c.sexo,
+      Bairro_Residencial: c.bairroResidencial,
+      Email: c.email,
+      Nascimento: c.nascimento,
+      CPF_CGC: c.cpfCgc,
+      RG: c.rg,
+    }));
+
+    return reply.send({ data: contatosFormatados });
   } catch (error) {
     request.log.error(error);
     return reply.status(500).send({ error: "Erro ao buscar contatos" });
